@@ -1,4 +1,5 @@
 language: dart
+- dartanalyzer
 dart:
 # Install the latest stable release
 - stable
