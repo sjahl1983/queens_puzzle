@@ -72,13 +72,6 @@ class _HomePageState extends State<HomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
 
-    final List<Board> boards = ModalRoute.of(context).settings.arguments;
-    if (boards != null) {
-      setState(() {
-        _boards = boards;
-      });
-    }
-
     return new Scaffold(
       key: _scaffoldKey,
       appBar: new AppBar(
@@ -95,7 +88,7 @@ class _HomePageState extends State<HomePage> {
         TextButton(
           buttonName: 'Solutions',
           buttonTextStyle: TextStyle(color: Colors.blue),
-          onPressed: () => Navigator.pushNamed(context, 'solutions'),
+          onPressed: () => _allSolutions(context),
         ),
         TextButton(
           key: Key('board_size_button'),
@@ -205,7 +198,7 @@ class _HomePageState extends State<HomePage> {
   void _changeSize(BuildContext context) {
     List<Board> boards = solve(size: int.parse(_boardSizeController.text));
 
-    Navigator.popAndPushNamed(context, 'home', arguments: boards);
+    Navigator.pop(context);
   }
 
   void _showUniqueSolutions() {
@@ -217,7 +210,19 @@ class _HomePageState extends State<HomePage> {
       }
     }
 
-    Navigator.popAndPushNamed(context, 'home', arguments: boards);
+    setState(() {
+      _boards = boards;
+    });
+  }
+
+  void _allSolutions(BuildContext context) async {
+    var reponse = await Navigator.pushNamed(context, 'solutions');
+
+    if (reponse != null) {
+      setState(() {
+        _boards = reponse;
+      });
+    }
   }
 
   @override

@@ -84,8 +84,7 @@ class _SolutionPageState extends State<SolutionPage>
   _onTapItem(BuildContext context, Solution item) async {
     List<Board> boards = await _boardRepository.fetchBySolutionId(item.id);
 
-    Navigator.pushNamedAndRemoveUntil(context, 'home', ModalRoute.withName('/'),
-        arguments: boards);
+    Navigator.pop(context, boards);
   }
 
   @override
