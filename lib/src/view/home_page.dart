@@ -115,6 +115,7 @@ class _HomePageState extends State<HomePage> {
                   color: _boards.length == 0 ? Colors.red : Colors.green)),
           new Flexible(
               child: new ListView.builder(
+                  key: Key('boards'),
                   itemCount: _boards.length,
                   itemBuilder: (BuildContext context, int index) {
                     final Board item = _boards[index];
@@ -128,7 +129,6 @@ class _HomePageState extends State<HomePage> {
 
   ListTile _getItem(int index, Board item, MaterialColor color) {
     return new ListTile(
-      key: Key('solutions'),
       leading: new CircleAvatar(
         backgroundColor: color,
         child: new Text('${index + 1}'),
@@ -196,7 +196,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _changeSize(BuildContext context) {
-    List<Board> boards = solve(size: int.parse(_boardSizeController.text));
+    setState(() {
+      _boards = solve(size: int.parse(_boardSizeController.text));
+    });
 
     Navigator.pop(context);
   }

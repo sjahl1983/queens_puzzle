@@ -20,7 +20,7 @@ void main() {
     await tester.tap(finder);
     await tester.pump();
 
-    String value = '4';
+    String value = '8';
     finder = find.byKey(Key('board_size_field'));
     await tester.enterText(finder, value);
     TextFormField f = tester.widget(finder);
@@ -30,9 +30,9 @@ void main() {
     await tester.tap(finder);
     await tester.pump();
 
-    finder = find.byKey(Key('solutions'));
-    await tester.pump();
-    expect(finder, findsNWidgets(2));
+    finder = find.byKey(Key('boards'));
+    ListView boards = tester.widget(finder);
+    expect(92, boards.childrenDelegate.estimatedChildCount);
 
   });
 }
