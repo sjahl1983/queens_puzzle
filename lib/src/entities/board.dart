@@ -117,17 +117,6 @@ class Board {
     }
   }
 
-  void _reverse() {
-    List<List<int>> array = new List.generate(size, (_) => new List(size));
-    ;
-    for (int row = size - 1; row >= 0; row--) {
-      for (int column = size - 1; column >= 0; column--) {
-        array[size - 1 - row][size - 1 - column] = data[row][column];
-      }
-    }
-    data = array;
-  }
-
   void _mirror() {
     List<List<int>> mirrorImage =
         new List.generate(size, (_) => new List(size));

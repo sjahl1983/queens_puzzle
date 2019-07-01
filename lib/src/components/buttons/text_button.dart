@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class TextButton extends StatelessWidget {
-  Key key;
-  String buttonName;
+  final Key key;
+  final String buttonName;
   final VoidCallback onPressed;
-  TextStyle textStyle, buttonTextStyle;
+  final TextStyle buttonTextStyle;
 
   TextButton({
     this.key,
